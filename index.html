@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق إدارة الجدول الزمني</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hero-section {
+            background-color: #0d6efd;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .section-header {
+            font-weight: bold;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        .api-example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-box {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-item {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .schedule-item span {
+            font-weight: bold;
+        }
+
+        .explanation {
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">إدارة الجدول الزمني</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#about">عن الخوارزمية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#api">API</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <h2 class="display-4 mb-4">أهلاً بك في تطبيق إدارة الجدول الزمني باستخدام الخوارزميات الجينية</h2>
+        <p class="lead mb-4">قم بتحسين وتوزيع ساعات العمل بين الموظفين بشكل عادل وفعال باستخدام الذكاء الاصطناعي.</p>
+        <a href="#form" class="btn btn-light btn-lg">ابدأ الآن</a>
+    </section>
+
+    <!-- About the Algorithm Section -->
+    <section id="about" class="container py-5">
+        <h2 class="section-header text-center">عن الخوارزمية</h2>
+        <p class="lead text-center mb-5">
+            الخوارزمية الجينية تستخدم تقنيات محاكاة للانتقاء الطبيعي والتزاوج والطفرة لتحسين توزيع ساعات العمل بين
+            الموظفين. الهدف هو إيجاد جدول زمني مثالي بحيث يتم توزيع الساعات بشكل عادل وآمن.
+        </p>
+        <p class="text-center mb-5">
+            يتم إنشاء جداول زمنية أولية بشكل عشوائي ثم يتم تحسينها عبر الأجيال. تستخدم **دالة اللياقة** لقياس جودة
+            الجداول بناءً على توازن الساعات والالتزام بالحدود.
+        </p>
+    </section>
+
+    <!-- API Section -->
+    <section id="api" class="container py-5 bg-light">
+        <h2 class="section-header text-center">API الخاصة بالموقع</h2>
+        <p class="text-center mb-4">يوفر الموقع واجهتين رئيسيتين:</p>
+        <div class="api-example mb-4">
+            <h4 class="mb-2">1. واجهة المستخدم الرئيسية</h4>
+            <p>
+                يتم من خلال هذه الواجهة إدخال الموظفين وساعات العمل المطلوبة. يقوم الموقع بعدها بتوليد الجدول الزمني
+                الأمثل باستخدام الخوارزمية الجينية.
+            </p>
+            <h4 class="mb-2">2. API لتوليد الجدول الزمني</h4>
+            <p>
+                تقدم هذه الـ API طريقة لإنشاء جدول زمني بشكل برمجي. يمكن للمستخدم إرسال البيانات عبر POST حيث يتم تحديد
+                الموظفين، ساعات العمل، وأوقات العمل المسموح بها. ثم يتم استلام الجدول الزمني الأمثل في الرد.
+            </p>
+            <pre class="api-example">
+POST /schedule
+{
+  "employees": ["employee1", "employee2", "employee3"],
+  "hours": 24,
+  "max_hours": 8,
+  "min_hours": 4
+}
+        </pre>
+        </div>
+    </section>
+
+    <!-- Schedule Form Section -->
+    <section id="form" class="container py-5">
+        <h2 class="section-header text-center">توليد الجدول الزمني</h2>
+        <p class="text-center mb-4">أدخل بيانات الموظفين وأوقات العمل لحساب الجدول الزمني المثالي.</p>
+        <form id="scheduleForm">
+            <div class="mb-3">
+                <label for="employees" class="form-label">أسماء الموظفين (مفصولة بفواصل):</label>
+                <input type="text" class="form-control" id="employees" placeholder="مثال: محمد, علي, سامر">
+            </div>
+            <div class="mb-3">
+                <label for="hours" class="form-label">إجمالي الساعات المطلوبة:</label>
+                <input type="number" class="form-control" id="hours" value="24">
+            </div>
+            <div class="mb-3">
+                <label for="max_hours" class="form-label">الحد الأقصى للساعات لكل موظف:</label>
+                <input type="number" class="form-control" id="max_hours" value="8">
+            </div>
+            <div class="mb-3">
+                <label for="min_hours" class="form-label">الحد الأدنى للساعات لكل موظف:</label>
+                <input type="number" class="form-control" id="min_hours" value="4">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">توليد الجدول الزمني</button>
+        </form>
+
+        <div id="result" class="result-container">
+            <div class="result-box">
+                <h4 class="section-header text-center">الجدول الزمني المثالي:</h4>
+                <div id="scheduleResult" class="schedule-result mb-4"></div>
+                <div class="explanation">
+                    <h5>شرح الخرج:</h5>
+                    <p>
+                        تم توزيع الساعات بين الموظفين بحيث يتم الالتزام بالحد الأقصى والحد الأدنى للساعات لكل موظف.
+                        الجدول الزمني يضمن توازنًا في العمل بين الجميع مع احترام الساعات الإجمالية المحددة.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2025 تطبيق إدارة الجدول الزمني</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap and Custom Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('scheduleForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const employees = document.getElementById('employees').value.split(',').map(e => e.trim());
+            const hours = parseInt(document.getElementById('hours').value);
+            const maxHours = parseInt(document.getElementById('max_hours').value);
+            const minHours = parseInt(document.getElementById('min_hours').value);
+
+            const response = await fetch('/schedule', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    employees: employees,
+                    hours: hours,
+                    max_hours: maxHours,
+                    min_hours: minHours
+                })
+            });
+
+            const result = await response.json();
+
+            const scheduleResultElement = document.getElementById('scheduleResult');
+            scheduleResultElement.textContent = JSON.stringify(result, null, 2);
+
+            const resultContainer = document.getElementById('result');
+            resultContainer.style.display = 'block';
+        });
+    </script>
+
+</body>
+
+</html>
